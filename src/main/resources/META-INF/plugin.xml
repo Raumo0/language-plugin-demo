@@ -25,5 +25,11 @@
                 implementationClass="com.github.raumo0.languageplugindemo.MoveSyntaxHighlighterFactory"/>
         <colorSettingsPage
                 implementation="com.github.raumo0.languageplugindemo.MoveColorSettingsPage"/>
+        <completion.contributor
+                language="Move"
+                implementationClass="com.github.raumo0.languageplugindemo.MoveCompletionContributor"/>
+        <lang.refactoringSupport
+                language="Move"
+                implementationClass="com.github.raumo0.languageplugindemo.MoveRefactoringSupportProvider"/>
     </extensions>
 </idea-plugin>

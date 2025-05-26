@@ -1,17 +1,14 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.raumo0.languageplugindemo.impl;
 
-import java.util.List;
-import org.jetbrains.annotations.*;
+import com.github.raumo0.languageplugindemo.MoveProperty;
+import com.github.raumo0.languageplugindemo.MoveVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
-import com.intellij.psi.util.PsiTreeUtil;
-import static com.github.raumo0.languageplugindemo.MoveTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
-import com.github.raumo0.languageplugindemo.*;
+import org.jetbrains.annotations.NotNull;
 
-public class MovePropertyImpl extends ASTWrapperPsiElement implements MoveProperty {
+public class MovePropertyImpl extends MoveNamedElementImpl implements MoveProperty {
 
   public MovePropertyImpl(@NotNull ASTNode node) {
     super(node);
@@ -35,6 +32,21 @@ public class MovePropertyImpl extends ASTWrapperPsiElement implements MoveProper
   @Override
   public String getValue() {
     return MovePsiImplUtil.getValue(this);
+  }
+
+  @Override
+  public String getName() {
+    return MovePsiImplUtil.getName(this);
+  }
+
+  @Override
+  public PsiElement setName(String newName) {
+    return MovePsiImplUtil.setName(this, newName);
+  }
+
+  @Override
+  public PsiElement getNameIdentifier() {
+    return MovePsiImplUtil.getNameIdentifier(this);
   }
 
 }

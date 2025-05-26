@@ -8,6 +8,10 @@ import com.intellij.psi.PsiElement;
 public class MoveVisitor extends PsiElementVisitor {
 
   public void visitProperty(@NotNull MoveProperty o) {
+    visitNamedElement(o);
+  }
+
+  public void visitNamedElement(@NotNull MoveNamedElement o) {
     visitPsiElement(o);
   }
 
