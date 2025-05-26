@@ -20,5 +20,10 @@
         <lang.parserDefinition
                 language="Move"
                 implementationClass="com.github.raumo0.languageplugindemo.MoveParserDefinition"/>
+        <lang.syntaxHighlighterFactory
+                language="Move"
+                implementationClass="com.github.raumo0.languageplugindemo.MoveSyntaxHighlighterFactory"/>
+        <colorSettingsPage
+                implementation="com.github.raumo0.languageplugindemo.MoveColorSettingsPage"/>
     </extensions>
 </idea-plugin>
