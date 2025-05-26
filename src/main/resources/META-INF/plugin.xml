@@ -17,5 +17,8 @@
                 extensions="move"/>
         <toolWindow factoryClass="com.github.raumo0.languageplugindemo.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
         <postStartupActivity implementation="com.github.raumo0.languageplugindemo.startup.MyProjectActivity" />
+        <lang.parserDefinition
+                language="Move"
+                implementationClass="com.github.raumo0.languageplugindemo.MoveParserDefinition"/>
     </extensions>
 </idea-plugin>
