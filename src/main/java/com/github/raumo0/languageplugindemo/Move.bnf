@@ -1,0 +1,20 @@
+{
+  parserClass="com.github.raumo0.languageplugindemo.MoveParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Move"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.github.raumo0.languageplugindemo"
+  psiImplPackage="com.github.raumo0.languageplugindemo.impl"
+
+  elementTypeHolderClass="com.github.raumo0.languageplugindemo.MoveTypes"
+  elementTypeClass="com.github.raumo0.languageplugindemo.MoveElementType"
+  tokenTypeClass="com.github.raumo0.languageplugindemo.MoveTokenType"
+}
+
+simpleFile ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY
