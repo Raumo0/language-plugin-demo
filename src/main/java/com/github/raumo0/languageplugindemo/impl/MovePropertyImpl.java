@@ -27,4 +27,14 @@ public class MovePropertyImpl extends ASTWrapperPsiElement implements MoveProper
     else super.accept(visitor);
   }
 
+  @Override
+  public String getKey() {
+    return MovePsiImplUtil.getKey(this);
+  }
+
+  @Override
+  public String getValue() {
+    return MovePsiImplUtil.getValue(this);
+  }
+
 }

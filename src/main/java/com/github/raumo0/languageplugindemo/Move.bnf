@@ -11,6 +11,8 @@
   elementTypeHolderClass="com.github.raumo0.languageplugindemo.MoveTypes"
   elementTypeClass="com.github.raumo0.languageplugindemo.MoveElementType"
   tokenTypeClass="com.github.raumo0.languageplugindemo.MoveTokenType"
+
+  psiImplUtilClass="com.github.raumo0.languageplugindemo.impl.MovePsiImplUtil"
 }
 
 simpleFile ::= item_*
@@ -18,3 +20,6 @@ simpleFile ::= item_*
 private item_ ::= (property|COMMENT|CRLF)
 
 property ::= (KEY? SEPARATOR VALUE?) | KEY
+{
+  methods=[getKey getValue]
+}

@@ -5,4 +5,8 @@ import com.intellij.psi.PsiElement;
 
 public interface MoveProperty extends PsiElement {
 
+  String getKey();
+
+  String getValue();
+
 }
