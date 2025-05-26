@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template
+package com.github.raumo0.languageplugindemo
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls
