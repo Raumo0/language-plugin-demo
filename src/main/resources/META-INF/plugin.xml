@@ -9,6 +9,12 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
+        <fileType
+                name="Move File"
+                implementationClass="com.github.raumo0.languageplugindemo.MoveFileType"
+                fieldName="INSTANCE"
+                language="Move"
+                extensions="move"/>
         <toolWindow factoryClass="com.github.raumo0.languageplugindemo.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
         <postStartupActivity implementation="com.github.raumo0.languageplugindemo.startup.MyProjectActivity" />
     </extensions>
