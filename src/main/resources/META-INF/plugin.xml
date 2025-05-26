@@ -5,6 +5,7 @@
     <vendor>raumo0</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
@@ -31,5 +32,8 @@
         <lang.refactoringSupport
                 language="Move"
                 implementationClass="com.github.raumo0.languageplugindemo.MoveRefactoringSupportProvider"/>
+        <lang.findUsagesProvider
+                language="Move"
+                implementationClass="com.github.raumo0.languageplugindemo.MoveFindUsagesProvider"/>
     </extensions>
 </idea-plugin>
