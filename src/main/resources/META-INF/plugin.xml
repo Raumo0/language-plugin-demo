@@ -49,5 +49,8 @@
         <lang.commenter
                 language="Move"
                 implementationClass="com.github.raumo0.languageplugindemo.MoveCommenter"/>
+        <spellchecker.support
+                language="Move"
+                implementationClass="com.github.raumo0.languageplugindemo.MoveSpellcheckingStrategy"/>
     </extensions>
 </idea-plugin>
