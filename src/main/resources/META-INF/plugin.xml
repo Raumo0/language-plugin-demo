@@ -35,5 +35,8 @@
         <lang.findUsagesProvider
                 language="Move"
                 implementationClass="com.github.raumo0.languageplugindemo.MoveFindUsagesProvider"/>
+        <lang.psiStructureViewFactory
+                language="Move"
+                implementationClass="com.github.raumo0.languageplugindemo.MoveStructureViewFactory"/>
     </extensions>
 </idea-plugin>
