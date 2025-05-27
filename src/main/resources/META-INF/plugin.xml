@@ -16,8 +16,6 @@
                 fieldName="INSTANCE"
                 language="Move"
                 extensions="move"/>
-        <toolWindow factoryClass="com.github.raumo0.languageplugindemo.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.raumo0.languageplugindemo.startup.MyProjectActivity" />
         <lang.parserDefinition
                 language="Move"
                 implementationClass="com.github.raumo0.languageplugindemo.parser.MoveParserDefinition"/>
@@ -26,6 +24,8 @@
                 implementationClass="com.github.raumo0.languageplugindemo.style.highlight.MoveSyntaxHighlighterFactory"/>
         <colorSettingsPage
                 implementation="com.github.raumo0.languageplugindemo.style.color.MoveColorSettingsPage"/>
+        <annotator language="Move"
+                   implementationClass="com.github.raumo0.languageplugindemo.annotator.MoveAnnotator"/>
         <completion.contributor
                 language="Move"
                 implementationClass="com.github.raumo0.languageplugindemo.completion.MoveCompletionContributor"/>
