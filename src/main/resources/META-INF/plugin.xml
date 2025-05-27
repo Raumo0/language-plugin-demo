@@ -38,5 +38,6 @@
         <lang.psiStructureViewFactory
                 language="Move"
                 implementationClass="com.github.raumo0.languageplugindemo.MoveStructureViewFactory"/>
+        <navbar implementation="com.github.raumo0.languageplugindemo.MoveStructureAwareNavbar"/>
     </extensions>
 </idea-plugin>
