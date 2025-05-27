@@ -42,5 +42,9 @@
         <lang.formatter
                 language="Move"
                 implementationClass="com.github.raumo0.languageplugindemo.MoveFormattingModelBuilder"/>
+        <codeStyleSettingsProvider
+                implementation="com.github.raumo0.languageplugindemo.MoveCodeStyleSettingsProvider"/>
+        <langCodeStyleSettingsProvider
+                implementation="com.github.raumo0.languageplugindemo.MoveLanguageCodeStyleSettingsProvider"/>
     </extensions>
 </idea-plugin>
