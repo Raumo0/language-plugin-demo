@@ -1,5 +1,5 @@
 {
-  parserClass="com.github.raumo0.languageplugindemo.MoveParser"
+  parserClass="com.github.raumo0.languageplugindemo.parser.MoveParser"
 
   extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
@@ -8,11 +8,11 @@
   psiPackage="com.github.raumo0.languageplugindemo"
   psiImplPackage="com.github.raumo0.languageplugindemo.impl"
 
-  elementTypeHolderClass="com.github.raumo0.languageplugindemo.MoveTypes"
-  elementTypeClass="com.github.raumo0.languageplugindemo.MoveElementType"
-  tokenTypeClass="com.github.raumo0.languageplugindemo.MoveTokenType"
+  elementTypeHolderClass="com.github.raumo0.languageplugindemo.language.MoveTypes"
+  elementTypeClass="com.github.raumo0.languageplugindemo.psi.MoveElementType"
+  tokenTypeClass="com.github.raumo0.languageplugindemo.psi.MoveTokenType"
 
-  psiImplUtilClass="com.github.raumo0.languageplugindemo.impl.MovePsiImplUtil"
+  psiImplUtilClass="com.github.raumo0.languageplugindemo.utils.MovePsiImplUtil"
 }
 
 simpleFile ::= item_*
@@ -20,7 +20,7 @@ simpleFile ::= item_*
 private item_ ::= (property|COMMENT|CRLF)
 
 property ::= (KEY? SEPARATOR VALUE?) | KEY {
-  mixin="com.github.raumo0.languageplugindemo.impl.MoveNamedElementImpl"
-  implements="com.github.raumo0.languageplugindemo.MoveNamedElement"
+  mixin="com.github.raumo0.languageplugindemo.psi.impl.MoveNamedElementImpl"
+  implements="com.github.raumo0.languageplugindemo.psi.MoveNamedElement"
   methods=[getKey getValue getName setName getNameIdentifier getPresentation]
 }
