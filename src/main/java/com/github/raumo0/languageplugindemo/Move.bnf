@@ -5,8 +5,8 @@
 
   psiClassPrefix="Move"
   psiImplClassSuffix="Impl"
-  psiPackage="com.github.raumo0.languageplugindemo"
-  psiImplPackage="com.github.raumo0.languageplugindemo.impl"
+  psiPackage="com.github.raumo0.languageplugindemo.psi"
+  psiImplPackage="com.github.raumo0.languageplugindemo.psi.impl"
 
   elementTypeHolderClass="com.github.raumo0.languageplugindemo.language.MoveTypes"
   elementTypeClass="com.github.raumo0.languageplugindemo.psi.MoveElementType"
@@ -20,7 +20,10 @@ simpleFile ::= item_*
 private item_ ::= (property|COMMENT|CRLF)
 
 property ::= (KEY? SEPARATOR VALUE?) | KEY {
+  pin=3
+  recoverWhile="recover_property"
   mixin="com.github.raumo0.languageplugindemo.psi.impl.MoveNamedElementImpl"
-  implements="com.github.raumo0.languageplugindemo.psi.MoveNamedElement"
+    implements="com.github.raumo0.languageplugindemo.psi.MoveNamedElement"
   methods=[getKey getValue getName setName getNameIdentifier getPresentation]
 }
+private recover_property ::= !(KEY|SEPARATOR|COMMENT)

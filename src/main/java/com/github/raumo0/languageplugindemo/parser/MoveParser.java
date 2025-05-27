@@ -7,6 +7,7 @@ import static com.github.raumo0.languageplugindemo.language.MoveTypes.*;
 import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.tree.TokenSet;
 import com.intellij.lang.PsiParser;
 import com.intellij.lang.LightPsiParser;
 
@@ -39,9 +40,11 @@ public class MoveParser implements PsiParser, LightPsiParser {
   static boolean item_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "item_")) return false;
     boolean r;
+    Marker m = enter_section_(b);
     r = property(b, l + 1);
     if (!r) r = consumeToken(b, COMMENT);
     if (!r) r = consumeToken(b, CRLF);
+    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -49,12 +52,11 @@ public class MoveParser implements PsiParser, LightPsiParser {
   // (KEY? SEPARATOR VALUE?) | KEY
   public static boolean property(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "property")) return false;
-    if (!nextTokenIs(b, "<property>", KEY, SEPARATOR)) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, PROPERTY, "<property>");
     r = property_0(b, l + 1);
     if (!r) r = consumeToken(b, KEY);
-    exit_section_(b, l, m, r, false, null);
+    exit_section_(b, l, m, r, false, MoveParser::recover_property);
     return r;
   }
 
@@ -82,6 +84,27 @@ public class MoveParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(b, l, "property_0_2")) return false;
     consumeToken(b, VALUE);
     return true;
+  }
+
+  /* ********************************************************** */
+  // !(KEY|SEPARATOR|COMMENT)
+  static boolean recover_property(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "recover_property")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NOT_);
+    r = !recover_property_0(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // KEY|SEPARATOR|COMMENT
+  private static boolean recover_property_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "recover_property_0")) return false;
+    boolean r;
+    r = consumeToken(b, KEY);
+    if (!r) r = consumeToken(b, SEPARATOR);
+    if (!r) r = consumeToken(b, COMMENT);
+    return r;
   }
 
   /* ********************************************************** */
