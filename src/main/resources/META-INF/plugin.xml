@@ -46,5 +46,8 @@
                 implementation="com.github.raumo0.languageplugindemo.MoveCodeStyleSettingsProvider"/>
         <langCodeStyleSettingsProvider
                 implementation="com.github.raumo0.languageplugindemo.MoveLanguageCodeStyleSettingsProvider"/>
+        <lang.commenter
+                language="Move"
+                implementationClass="com.github.raumo0.languageplugindemo.MoveCommenter"/>
     </extensions>
 </idea-plugin>
