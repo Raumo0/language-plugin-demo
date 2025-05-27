@@ -39,5 +39,8 @@
                 language="Move"
                 implementationClass="com.github.raumo0.languageplugindemo.MoveStructureViewFactory"/>
         <navbar implementation="com.github.raumo0.languageplugindemo.MoveStructureAwareNavbar"/>
+        <lang.formatter
+                language="Move"
+                implementationClass="com.github.raumo0.languageplugindemo.MoveFormattingModelBuilder"/>
     </extensions>
 </idea-plugin>
