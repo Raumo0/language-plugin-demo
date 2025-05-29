@@ -1,20 +1,102 @@
 {
-  parserClass="com.github.raumo0.languageplugindemo.MoveParser"
+    parserClass="com.github.raumo0.languageplugindemo.MoveParser"
 
-  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+      extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
-  psiClassPrefix="Move"
-  psiImplClassSuffix="Impl"
-  psiPackage="com.github.raumo0.languageplugindemo"
-  psiImplPackage="com.github.raumo0.languageplugindemo.impl"
+      psiClassPrefix="Move"
+      psiImplClassSuffix="Impl"
+      psiPackage="com.github.raumo0.languageplugindemo.psi"
+      psiImplPackage="com.github.raumo0.languageplugindemo.psi.impl"
 
-  elementTypeHolderClass="com.github.raumo0.languageplugindemo.MoveTypes"
-  elementTypeClass="com.github.raumo0.languageplugindemo.MoveElementType"
-  tokenTypeClass="com.github.raumo0.languageplugindemo.MoveTokenType"
+      elementTypeHolderClass="com.github.raumo0.languageplugindemo.psi.MoveTypes"
+      elementTypeClass="com.github.raumo0.languageplugindemo.psi.MoveElementType"
+      tokenTypeClass="com.github.raumo0.languageplugindemo.psi.MoveTokenType"
+
+    tokens = [
+        WHITESPACE='regexp:[ \n\t\r\f]+'
+
+        // Keywords
+        LET='let'
+        CONST='const'
+
+        // Identifiers and literals
+        IDENTIFIER='regexp:[a-zA-Z_][a-zA-Z0-9_]*'
+        INTEGER_LITERAL='regexp:[0-9]+((u8)|(u16)|(u32)|(u64)|(u128)|(u256))?'
+        HEX_INTEGER_LITERAL='regexp:0x[0-9a-fA-F]+((u8)|(u16)|(u32)|(u64)|(u128)|(u256))?'
+        BOOL_LITERAL='regexp:true|false'
+
+        // Operators and punctuation
+        SEMICOLON=';'
+        COLON=':'
+        EQ='='
+        COMMA=','
+        L_PAREN='('
+        R_PAREN=')'
+        L_BRACE='{'
+        R_BRACE='}'
+    ]
+
+    extends(".*Expr")=Expr
 }
 
-simpleFile ::= item_*
+// Variable declaration
+LetBinding ::= LET Pattern TypeAscription? Initializer? SEMICOLON
+{
+    pin=1
+    implements="com.github.raumo0.languageplugindemo.psi.MvNameIdentifierOwner"
+    mixin="com.github.raumo0.languageplugindemo.psi.ext.MvLetBindingMixin"
+}
 
-private item_ ::= (property|COMMENT|CRLF)
+// Constant declaration
+Const ::= CONST IDENTIFIER TypeAscription Initializer SEMICOLON
+{
+    pin=1
+    implements=[
+        "com.github.raumo0.languageplugindemo.psi.ext.MvItemElement"
+        "com.github.raumo0.languageplugindemo.psi.ext.MvTypeAscriptionOwner"
+    ]
+    mixin="com.github.raumo0.languageplugindemo.psi.ext.MvConstBindingMixin"
+}
 
-property ::= (KEY? SEPARATOR VALUE?) | KEY
+// Supporting elements for variable/const declarations
+TypeAscription ::= COLON Type
+
+Initializer ::= EQ Expr
+
+// Patterns for destructuring in let bindings
+Pattern ::= IdentifierPattern
+          | TuplePattern
+
+private IdentifierPattern ::= IDENTIFIER {
+    implements="com.github.raumo0.languageplugindemo.psi.MvNameIdentifierOwner"
+    mixin="com.github.raumo0.languageplugindemo.psi.ext.MvPatternMixin"
+}
+
+TuplePattern ::= L_PAREN [<<comma_separated_list Pattern>>] R_PAREN {
+    implements="com.github.raumo0.languageplugindemo.psi.ext.MvPatternMixin"
+    mixin="com.github.raumo0.languageplugindemo.psi.ext.MvTuplePatternMixin"
+}
+
+// Types
+Type ::= PrimitiveType
+       | TupleType
+
+private PrimitiveType ::= IDENTIFIER
+
+TupleType ::= L_PAREN [<<comma_separated_list Type>>] R_PAREN
+
+// Expressions
+Expr ::= LiteralExpr
+       | PathExpr
+       | TupleExpr
+
+LiteralExpr ::= INTEGER_LITERAL
+              | HEX_INTEGER_LITERAL
+              | BOOL_LITERAL
+
+PathExpr ::= IDENTIFIER
+
+TupleExpr ::= L_PAREN [<<comma_separated_list Expr>>] R_PAREN
+
+// Utility for comma-separated lists
+private meta comma_separated_list ::= <<param>> (COMMA <<param>>)* COMMA?

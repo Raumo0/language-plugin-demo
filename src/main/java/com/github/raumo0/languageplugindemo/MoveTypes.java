@@ -1,6 +1,8 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.raumo0.languageplugindemo;
 
+import com.github.raumo0.languageplugindemo.psi.MoveElementType;
+import com.github.raumo0.languageplugindemo.psi.MoveTokenType;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.PsiElement;
 import com.intellij.lang.ASTNode;
