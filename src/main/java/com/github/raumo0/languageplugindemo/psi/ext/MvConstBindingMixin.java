@@ -57,12 +57,14 @@ public abstract class MvConstBindingMixin extends ASTWrapperPsiElement implement
      * @return The initializer element, or null if there is no initializer
      */
     @Nullable
-    public PsiElement getInitializer() {
+    @Override
+    public MoveInitializer getInitializer() {
         // Get the Initializer element and then get its Expr child
-        return PsiTreeUtil.findChildOfType(
-                PsiTreeUtil.findChildOfType(this, MoveInitializer.class),
-                MoveExpr.class
-        );
+//        return PsiTreeUtil.findChildOfType(
+//                PsiTreeUtil.findChildOfType(this, MoveInitializer.class),
+//                MoveExpr.class
+//        );
+        return findChildByClass(MoveInitializer.class);
     }
 
     /**

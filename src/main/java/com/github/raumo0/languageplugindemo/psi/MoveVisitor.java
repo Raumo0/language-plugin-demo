@@ -39,7 +39,7 @@ public class MoveVisitor extends PsiElementVisitor {
   }
 
   public void visitTuplePattern(@NotNull MoveTuplePattern o) {
-    visitMvPatternMixin(o);
+    visitPsiElement(o);
   }
 
   public void visitTupleType(@NotNull MoveTupleType o) {
