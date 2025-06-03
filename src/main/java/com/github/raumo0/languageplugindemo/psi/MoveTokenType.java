@@ -12,6 +12,6 @@ public class MoveTokenType extends IElementType {
 
     @Override
     public String toString() {
-        return "SimpleTokenType." + super.toString();
+        return "MoveTokenType." + super.toString();
     }
 }

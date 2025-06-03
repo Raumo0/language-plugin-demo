@@ -8,7 +8,7 @@ import static com.github.raumo0.languageplugindemo.psi.MoveElementTypes.*;
 
 %%
 
-%class MoveLexer
+%class MoveLexerGen
 %implements FlexLexer
 %unicode
 %function advance

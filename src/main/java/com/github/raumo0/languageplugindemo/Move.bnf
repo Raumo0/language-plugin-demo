@@ -65,38 +65,23 @@ Initializer ::= EQ Expr
 
 // Patterns for destructuring in let bindings
 Pattern ::= IdentifierPattern
-          | TuplePattern
 
 private IdentifierPattern ::= IDENTIFIER {
     implements="com.github.raumo0.languageplugindemo.psi.MvNameIdentifierOwner"
     mixin="com.github.raumo0.languageplugindemo.psi.ext.MvPatternMixin"
 }
 
-TuplePattern ::= L_PAREN [<<comma_separated_list Pattern>>] R_PAREN {
-    implements="com.github.raumo0.languageplugindemo.psi.ext.MvPatternMixin"
-    mixin="com.github.raumo0.languageplugindemo.psi.ext.MvTuplePatternMixin"
-}
-
 // Types
 Type ::= PrimitiveType
-       | TupleType
 
 private PrimitiveType ::= IDENTIFIER
-
-TupleType ::= L_PAREN [<<comma_separated_list Type>>] R_PAREN
 
 // Expressions
 Expr ::= LiteralExpr
        | PathExpr
-       | TupleExpr
 
 LiteralExpr ::= INTEGER_LITERAL
               | HEX_INTEGER_LITERAL
               | BOOL_LITERAL
 
 PathExpr ::= IDENTIFIER
-
-TupleExpr ::= L_PAREN [<<comma_separated_list Expr>>] R_PAREN
-
-// Utility for comma-separated lists
-private meta comma_separated_list ::= <<param>> (COMMA <<param>>)* COMMA?
