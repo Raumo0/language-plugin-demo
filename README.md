@@ -1,28 +1,57 @@
-# language-plugin-demo
+# Language Plugin Demo for JetBrains IDEs
 
 ![Build](https://github.com/Raumo0/language-plugin-demo/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [pluginGroup](./gradle.properties) and [pluginName](./gradle.properties), as well as the [id](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `MARKETPLACE_ID` in the above README badges. You can obtain it once the plugin is published to JetBrains Marketplace.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
+## About This Project
 
-<!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+This project is a **demonstration prototype** created as part of our team's application to the **Sui Foundation Grant Program**. The goal is to showcase our technical expertise and understanding of IntelliJ Platform plugin development before building a comprehensive Move language plugin for JetBrains IDEs.
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+> **⚠️ Important Disclaimer**: This is a proof-of-concept demonstration, not a production-ready plugin. It serves to illustrate basic plugin architecture and our team's capability to deliver a full-featured Move language support for IntelliJ IDEA and other JetBrains IDEs.
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
-<!-- Plugin description end -->
+## Project Purpose
+
+Our team applied for the Sui Foundation grant to develop professional-grade Move language support for the JetBrains ecosystem. This demo project demonstrates:
+
+- Our understanding of IntelliJ Platform SDK
+- Experience with language plugin development
+- Technical approach and architecture decisions
+- Capability to deliver enterprise-quality developer tools
+
+## Current Demo Features
+
+This prototype currently implements basic language plugin infrastructure:
+
+### Core Language Infrastructure
+- **Language Definition**: Move language registration with proper file type association for files `.move`
+- **File Type Support**: Custom file type implementation with dedicated Move file icon
+- **Grammar and Parser**: Full grammar definition with generated parser for syntax
+- **Lexer Integration**: Lexer adapter implementation for tokenization
+
+### Syntax and Visual Features
+- **Syntax Highlighting**: Multi-color syntax highlighting with customizable color schemes
+- **Color Settings Page**: IDE preferences integration for customizing syntax colors
+- **Code Formatting**: Automatic code formatting capabilities with configurable rules
+- **Code Style Settings**: Comprehensive code style configuration options
+
+### Developer Experience Features
+- **PSI (Program Structure Interface)**: PSI implementation for code analysis
+- **Code Annotator**: Real-time code analysis and error highlighting
+- **Auto-completion**: Intelligent code completion for language constructs
+- **Find Usages**: Symbol usage detection and navigation throughout the codebase
+- **Structure View**: Hierarchical code structure visualization in IDE sidebar
+- **Structure-Aware Navigation**: Smart navigation bar integration
+
+### Code Quality Tools
+- **Commenting Support**: Automatic line and block comment handling
+- **Spell Checking**: Integrated spell checking for code comments and strings
+- **Refactoring Support**: Foundation for safe code refactoring operations
+
+## Hybrid PSI+LSP Architecture Vision
+
+Our current demo implements basic PSI functionality. For production, we'll architect **clean module interfaces** enabling seamless switching between PSI and LSP providers **depending on features**.
+
 
 ## Installation
 
