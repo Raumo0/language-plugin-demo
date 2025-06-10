@@ -5,9 +5,9 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 
 ## About This Project
-
+<!-- Plugin description -->
 This project is a **demonstration prototype** created as part of our team's application to the **Sui Foundation Grant Program**. The goal is to showcase our technical expertise and understanding of IntelliJ Platform plugin development before building a comprehensive Move language plugin for JetBrains IDEs.
-
+<!-- Plugin description end -->
 > **⚠️ Important Disclaimer**: This is a proof-of-concept demonstration, not a production-ready plugin. It serves to illustrate basic plugin architecture and our team's capability to deliver a full-featured Move language support for IntelliJ IDEA and other JetBrains IDEs.
 
 ## Project Purpose

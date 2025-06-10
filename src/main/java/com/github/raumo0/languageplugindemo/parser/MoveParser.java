@@ -32,20 +32,33 @@ public class MoveParser implements PsiParser, LightPsiParser {
   }
 
   static boolean parse_root_(IElementType t, PsiBuilder b, int l) {
-    return simpleFile(b, l + 1);
+    return moveFile(b, l + 1);
   }
 
   /* ********************************************************** */
-  // property|COMMENT|CRLF
+  // property|COMMENT_LINE|COMMENT|CRLF
   static boolean item_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "item_")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = property(b, l + 1);
+    if (!r) r = consumeToken(b, COMMENT_LINE);
     if (!r) r = consumeToken(b, COMMENT);
     if (!r) r = consumeToken(b, CRLF);
     exit_section_(b, m, null, r);
     return r;
+  }
+
+  /* ********************************************************** */
+  // item_*
+  static boolean moveFile(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "moveFile")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!item_(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "moveFile", c)) break;
+    }
+    return true;
   }
 
   /* ********************************************************** */
@@ -87,7 +100,7 @@ public class MoveParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // !(KEY|SEPARATOR|COMMENT)
+  // !(KEY|SEPARATOR|COMMENT_LINE|COMMENT)
   static boolean recover_property(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "recover_property")) return false;
     boolean r;
@@ -97,26 +110,15 @@ public class MoveParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // KEY|SEPARATOR|COMMENT
+  // KEY|SEPARATOR|COMMENT_LINE|COMMENT
   private static boolean recover_property_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "recover_property_0")) return false;
     boolean r;
     r = consumeToken(b, KEY);
     if (!r) r = consumeToken(b, SEPARATOR);
+    if (!r) r = consumeToken(b, COMMENT_LINE);
     if (!r) r = consumeToken(b, COMMENT);
     return r;
-  }
-
-  /* ********************************************************** */
-  // item_*
-  static boolean simpleFile(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "simpleFile")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!item_(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "simpleFile", c)) break;
-    }
-    return true;
   }
 
 }

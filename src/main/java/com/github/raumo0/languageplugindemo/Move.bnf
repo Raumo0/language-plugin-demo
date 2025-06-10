@@ -13,11 +13,29 @@
   tokenTypeClass="com.github.raumo0.languageplugindemo.psi.MoveTokenType"
 
   psiImplUtilClass="com.github.raumo0.languageplugindemo.utils.MovePsiImplUtil"
+
+  tokens = [
+      // comment
+      COMMENT_LINE = "Comment"
+
+      PARENTHESIS_L = '('
+      PARENTHESIS_R = ')'
+      BRACKET_L = '['
+      BRACKET_R = ']'
+      BRACE_L = '{'
+      BRACE_R = '}'
+
+      SEMICOLON = ';'
+      COMMA = ','
+      DOT = '.'
+
+      KW_LET = 'let_kw'
+    ]
 }
 
-simpleFile ::= item_*
+moveFile ::= item_*
 
-private item_ ::= (property|COMMENT|CRLF)
+private item_ ::= (property|COMMENT_LINE|COMMENT|CRLF)
 
 property ::= (KEY? SEPARATOR VALUE?) | KEY {
   pin=3
@@ -26,4 +44,4 @@ property ::= (KEY? SEPARATOR VALUE?) | KEY {
     implements="com.github.raumo0.languageplugindemo.psi.MoveNamedElement"
   methods=[getKey getValue getName setName getNameIdentifier getPresentation]
 }
-private recover_property ::= !(KEY|SEPARATOR|COMMENT)
+private recover_property ::= !(KEY|SEPARATOR|COMMENT_LINE|COMMENT)

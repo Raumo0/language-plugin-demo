@@ -12,9 +12,20 @@ public interface MoveTypes {
 
   IElementType PROPERTY = new MoveElementType("PROPERTY");
 
+  IElementType BRACE_L = new MoveTokenType("{");
+  IElementType BRACE_R = new MoveTokenType("}");
+  IElementType BRACKET_L = new MoveTokenType("[");
+  IElementType BRACKET_R = new MoveTokenType("]");
+  IElementType COMMA = new MoveTokenType(",");
   IElementType COMMENT = new MoveTokenType("COMMENT");
+  IElementType COMMENT_LINE = new MoveTokenType("Comment");
   IElementType CRLF = new MoveTokenType("CRLF");
+  IElementType DOT = new MoveTokenType(".");
   IElementType KEY = new MoveTokenType("KEY");
+  IElementType KW_LET = new MoveTokenType("let_kw");
+  IElementType PARENTHESIS_L = new MoveTokenType("(");
+  IElementType PARENTHESIS_R = new MoveTokenType(")");
+  IElementType SEMICOLON = new MoveTokenType(";");
   IElementType SEPARATOR = new MoveTokenType("SEPARATOR");
   IElementType VALUE = new MoveTokenType("VALUE");
 
