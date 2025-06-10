@@ -7,6 +7,7 @@ import static com.github.raumo0.languageplugindemo.MoveTypes.*;
 import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.tree.TokenSet;
 import com.intellij.lang.PsiParser;
 import com.intellij.lang.LightPsiParser;
 
@@ -31,18 +32,31 @@ public class MoveParser implements PsiParser, LightPsiParser {
   }
 
   static boolean parse_root_(IElementType t, PsiBuilder b, int l) {
-    return simpleFile(b, l + 1);
+    return moveFile(b, l + 1);
   }
 
   /* ********************************************************** */
-  // property|COMMENT|CRLF
+  // property|COMMENT_LINE|COMMENT|CRLF
   static boolean item_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "item_")) return false;
     boolean r;
     r = property(b, l + 1);
+    if (!r) r = consumeToken(b, COMMENT_LINE);
     if (!r) r = consumeToken(b, COMMENT);
     if (!r) r = consumeToken(b, CRLF);
     return r;
+  }
+
+  /* ********************************************************** */
+  // item_*
+  static boolean moveFile(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "moveFile")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!item_(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "moveFile", c)) break;
+    }
+    return true;
   }
 
   /* ********************************************************** */
@@ -81,18 +95,6 @@ public class MoveParser implements PsiParser, LightPsiParser {
   private static boolean property_0_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "property_0_2")) return false;
     consumeToken(b, VALUE);
-    return true;
-  }
-
-  /* ********************************************************** */
-  // item_*
-  static boolean simpleFile(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "simpleFile")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!item_(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "simpleFile", c)) break;
-    }
     return true;
   }
 

@@ -11,10 +11,28 @@
   elementTypeHolderClass="com.github.raumo0.languageplugindemo.MoveTypes"
   elementTypeClass="com.github.raumo0.languageplugindemo.MoveElementType"
   tokenTypeClass="com.github.raumo0.languageplugindemo.MoveTokenType"
+
+  tokens = [
+    // comment
+    COMMENT_LINE = "Comment"
+
+    PARENTHESIS_L = '('
+    PARENTHESIS_R = ')'
+    BRACKET_L = '['
+    BRACKET_R = ']'
+    BRACE_L = '{'
+    BRACE_R = '}'
+
+    SEMICOLON = ';'
+    COMMA = ','
+    DOT = '.'
+
+    KW_LET = 'let_kw'
+  ]
 }
 
-simpleFile ::= item_*
+moveFile ::= item_*
 
-private item_ ::= (property|COMMENT|CRLF)
+private item_ ::= (property|COMMENT_LINE|COMMENT|CRLF)
 
 property ::= (KEY? SEPARATOR VALUE?) | KEY
